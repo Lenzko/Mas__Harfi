@@ -1,11 +1,285 @@
-<?php
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-require_once 'core/App.php';
-require_once 'core/Controller.php';
-require_once 'config/config.php';
+  <title>Terima Kasih Mentor</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-$app = new App();
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-echo "Welcome to " . APP_NAME . " version " . APP_VERSION . "!<br>";
-echo "Base URL: " . BASE_URL . "<br>";
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html,
+    body{
+      width:100%;
+      min-height:100%;
+      overflow-x:hidden;
+      font-family:'Poppins',sans-serif;
+      background:linear-gradient(
+        135deg,
+        #ffd6e7,
+        #ffc2d1,
+        #ffe5ec,
+        #f9bec7
+      );
+      color:#5c374c;
+    }
+
+    body{
+      position:relative;
+    }
+
+    .particles{
+      position:fixed;
+      inset:0;
+      background-image:
+      radial-gradient(circle, rgba(255,255,255,0.35) 1px, transparent 1px);
+      background-size:40px 40px;
+      animation:moveBg 20s linear infinite;
+      z-index:-1;
+    }
+
+    @keyframes moveBg{
+      from{
+        transform:translateY(0);
+      }
+      to{
+        transform:translateY(-40px);
+      }
+    }
+
+    .page{
+      width:100%;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:30px 20px;
+      transition:0.8s ease;
+    }
+
+    .card{
+      width:100%;
+      max-width:850px;
+      background:rgba(255,255,255,0.45);
+      backdrop-filter:blur(14px);
+      border:1px solid rgba(255,255,255,0.5);
+      border-radius:30px;
+      padding:50px;
+      text-align:center;
+      box-shadow:0 10px 40px rgba(255,182,193,0.35);
+      animation:fadeUp 1s ease;
+    }
+
+    h1{
+      font-size:3rem;
+      margin-bottom:20px;
+    }
+
+    h2{
+      font-size:2rem;
+      margin-bottom:25px;
+    }
+
+    p{
+      font-size:1.05rem;
+      line-height:2;
+      margin-bottom:20px;
+    }
+
+    .highlight{
+      color:#d63384;
+      font-style:italic;
+      font-weight:600;
+    }
+
+    button{
+      margin-top:25px;
+      padding:15px 35px;
+      border:none;
+      border-radius:50px;
+      font-size:1rem;
+      font-weight:600;
+      cursor:pointer;
+      background:#ff8fab;
+      color:white;
+      transition:0.3s;
+      box-shadow:0 5px 15px rgba(255,143,171,0.4);
+    }
+
+    button:hover{
+      transform:scale(1.05);
+      background:#fb6f92;
+    }
+
+    #messagePage{
+      display:none;
+      padding-top:60px;
+      padding-bottom:60px;
+    }
+
+    .active{
+      display:flex !important;
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(30px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @media(max-width:768px){
+
+      .page{
+        align-items:flex-start;
+        padding:40px 15px;
+      }
+
+      .card{
+        padding:28px;
+        border-radius:25px;
+      }
+
+      h1{
+        font-size:2.1rem;
+        line-height:1.3;
+      }
+
+      h2{
+        font-size:1.7rem;
+        line-height:1.4;
+      }
+
+      p{
+        font-size:0.97rem;
+        line-height:1.9;
+        text-align:left;
+      }
+
+      button{
+        width:100%;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="particles"></div>
+
+<!-- HALAMAN PERTAMA -->
+<section class="page active" id="homePage">
+
+  <div class="card">
+
+    <h1>Terima Kasih Mentor 🌸</h1>
+
+    <p style="text-align:center;">
+      Sebuah pesan kecil untuk seseorang
+      yang telah membimbing saya selama masa magang.
+    </p>
+
+    <button id="openBtn">
+      Buka Pesan 💌
+    </button>
+
+  </div>
+
+</section>
+
+<!-- HALAMAN KEDUA -->
+<section class="page" id="messagePage">
+
+  <div class="card">
+
+    <h2>Pesan Perpisahan ✨</h2>
+
+    <p>
+      Tidak terasa masa magang sudah selesai.
+      Terima kasih karena sudah membimbing saya
+      bukan hanya dalam pekerjaan,
+      tetapi juga dalam cara berpikir
+      dan menghadapi tantangan.
+    </p>
+
+    <p>
+      Saya sangat bersyukur bisa belajar
+      dari mentor yang sabar dan suportif.
+      Banyak pengalaman dan pelajaran berharga
+      yang akan selalu saya ingat.
+    </p>
+
+    <p>
+      Mohon maaf jika selama magang
+      masih banyak kekurangan.
+      Semoga semua kebaikan yang diberikan
+      dibalas dengan kesuksesan,
+      kesehatan, dan kebahagiaan.
+    </p>
+
+    <p class="highlight">
+      “Awalnya saya datang sebagai anak magang
+      yang masih banyak bingung,
+      tetapi saya pulang membawa banyak pengalaman
+      dan pelajaran berharga.”
+    </p>
+
+    <h3>
+      🌷 Terima kasih untuk semuanya 🌷
+    </h3>
+
+    <button id="backBtn">
+      Kembali 💖
+    </button>
+
+  </div>
+
+</section>
+
+<script>
+
+  const openBtn = document.getElementById('openBtn');
+  const backBtn = document.getElementById('backBtn');
+
+  const homePage = document.getElementById('homePage');
+  const messagePage = document.getElementById('messagePage');
+
+  openBtn.addEventListener('click', () => {
+
+    homePage.classList.remove('active');
+    messagePage.classList.add('active');
+
+    window.scrollTo(0,0);
+
+  });
+
+  backBtn.addEventListener('click', () => {
+
+    messagePage.classList.remove('active');
+    homePage.classList.add('active');
+
+    window.scrollTo(0,0);
+
+  });
+
+</script>
+
+</body>
+</html>
