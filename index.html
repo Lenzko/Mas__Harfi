@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <title>Thank You Mentor</title>
 
@@ -127,13 +127,14 @@
 
     .game-area{
       width:100%;
-      height:400px;
+      min-height:500px;
       background:rgba(255,255,255,0.05);
       border-radius:25px;
       margin-top:25px;
       position:relative;
       overflow:hidden;
       border:1px solid rgba(255,255,255,0.08);
+      padding:20px;
     }
 
     .star{
@@ -146,12 +147,13 @@
 
     .finish-animation{
       width:100%;
-      height:100%;
+      min-height:100%;
       display:flex;
       flex-direction:column;
       justify-content:center;
       align-items:center;
       animation:fadeIn 1s ease;
+      padding:30px 20px;
     }
 
     .big-icon{
@@ -168,6 +170,24 @@
       text-align:center;
       max-width:500px;
       color:#cbd5e1;
+      line-height:2;
+      margin-top:15px;
+      margin-bottom:10px;
+    }
+
+    .spark{
+      position:absolute;
+      top:-20px;
+      font-size:1.3rem;
+      animation:fall linear forwards;
+      pointer-events:none;
+    }
+
+    @keyframes fall{
+      to{
+        transform:translateY(700px) rotate(360deg);
+        opacity:0;
+      }
     }
 
     @keyframes trophy{
@@ -242,11 +262,15 @@
       }
 
       .game-area{
-        height:320px;
+        min-height:420px;
       }
 
       .big-icon{
         font-size:4.5rem;
+      }
+
+      .finish-animation p{
+        text-align:center;
       }
 
     }
@@ -327,10 +351,10 @@
 
   <div class="card">
 
-    <h2>Mini Appreciation Game</h2>
+    <h2>Mini Appreciation Game ⭐</h2>
 
     <p style="text-align:center;">
-      Kumpulkan 5 bintang penghargaan ⭐
+      Kumpulkan 5 bintang penghargaan
     </p>
 
     <h3 id="score">
@@ -339,7 +363,7 @@
 
     <div class="game-area" id="gameArea"></div>
 
-    <button onclick="startGame()">
+    <button id="startBtn" onclick="startGame()">
       Mulai Game
     </button>
 
@@ -394,6 +418,9 @@ function startGame(){
 
   document.getElementById('gameArea').innerHTML = '';
 
+  document.getElementById('startBtn').style.display =
+  'none';
+
   gameInterval = setInterval(createStar, 700);
 
 }
@@ -410,8 +437,8 @@ function createStar(){
 
   const gameArea = document.getElementById('gameArea');
 
-  const maxX = gameArea.clientWidth - 50;
-  const maxY = gameArea.clientHeight - 50;
+  const maxX = gameArea.clientWidth - 60;
+  const maxY = gameArea.clientHeight - 60;
 
   star.style.left = Math.random() * maxX + 'px';
   star.style.top = Math.random() * maxY + 'px';
@@ -465,9 +492,31 @@ function showFinishAnimation(){
         selama masa magang.
       </p>
 
+      <p class="highlight">
+        Appreciation & Respect
+      </p>
+
     </div>
 
   `;
+
+  for(let i=0;i<20;i++){
+
+    const spark = document.createElement('div');
+
+    spark.classList.add('spark');
+
+    spark.innerHTML = '⭐';
+
+    spark.style.left =
+    Math.random() * 100 + '%';
+
+    spark.style.animationDuration =
+    (3 + Math.random() * 3) + 's';
+
+    gameArea.appendChild(spark);
+
+  }
 
 }
 
