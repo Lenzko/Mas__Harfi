@@ -386,7 +386,11 @@
       Mulai Game
     </button>
 
-    <button onclick="scrollToMusicPage()">
+    <!-- TOMBOL MUNCUL SETELAH GAME SELESAI -->
+    <button
+      id="musicBtn"
+      onclick="scrollToMusicPage()"
+      style="display:none;">
       Lanjut 🎵
     </button>
 
@@ -406,22 +410,16 @@
       ucapan terima kasih ini ✨
     </p>
 
-    <!-- GANTI LINK MUSIK DISINI -->
+    <!-- GANTI FILE MUSIK -->
     <audio id="mentorSong" controls>
 
-      <!-- FILE LOCAL -->
       <source src="adzan.mp3" type="audio/mpeg">
-
-      <!-- CONTOH LINK GITHUB -->
-      <!--
-      <source src="https://raw.githubusercontent.com/USERNAME/REPO/main/musik.mp3" type="audio/mpeg">
-      -->
 
       Browser kamu tidak mendukung audio.
 
     </audio>
 
-    <!-- FINAL MESSAGE -->
+    <!-- PESAN AKHIR -->
     <div class="final-message" id="finalCard">
 
       <div class="final-inner">
@@ -495,6 +493,9 @@ function startGame(){
   clearInterval(gameInterval);
 
   document.getElementById('gameArea').innerHTML = '';
+
+  document.getElementById('musicBtn').style.display =
+  'none';
 
   document.getElementById('startBtn').style.display =
   'none';
@@ -595,6 +596,9 @@ function showFinishAnimation(){
     gameArea.appendChild(spark);
 
   }
+
+  document.getElementById('musicBtn').style.display =
+  'inline-block';
 
 }
 
