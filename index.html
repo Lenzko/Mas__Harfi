@@ -202,6 +202,21 @@
       padding:30px;
     }
 
+    #musicQuotes{
+      margin-top:25px;
+      min-height:90px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    #quoteText{
+      transition:0.5s;
+      text-align:center;
+      font-size:1.05rem;
+      line-height:2;
+    }
+
     @keyframes fall{
       to{
         transform:translateY(700px) rotate(360deg);
@@ -289,6 +304,10 @@
       }
 
       .finish-animation p{
+        text-align:center;
+      }
+
+      #quoteText{
         text-align:center;
       }
 
@@ -410,7 +429,7 @@
       ucapan terima kasih ini ✨
     </p>
 
-    <!-- QUOTES SAAT MUSIK BERJALAN -->
+    <!-- QUOTES -->
     <div id="musicQuotes">
 
       <p class="highlight" id="quoteText">
@@ -423,13 +442,14 @@
     <!-- AUDIO -->
     <audio id="mentorSong" controls>
 
+      <!-- GANTI DENGAN FILE MUSIK KAMU -->
       <source src="adzan.mp3" type="audio/mpeg">
 
       Browser kamu tidak mendukung audio.
 
     </audio>
 
-    <!-- PESAN AKHIR -->
+    <!-- FINAL MESSAGE -->
     <div class="final-message" id="finalCard">
 
       <div class="final-inner">
@@ -461,11 +481,13 @@
   </div>
 
 </section>
+
 <script>
 
 let score = 0;
 let gameInterval;
 let finishShown = false;
+let quoteInterval;
 
 function scrollToMessage(){
 
@@ -611,9 +633,63 @@ function showFinishAnimation(){
 
 }
 
-const mentorSong = document.getElementById('mentorSong');
+const quotes = [
+
+  "“Kadang perjalanan terbaik datang dari pertemuan yang tidak terlalu lama.”",
+
+  "“Terima kasih untuk setiap ilmu dan pengalaman yang diberikan.”",
+
+  "“Tidak semua mentor hanya mengajarkan pekerjaan, beberapa juga mengajarkan kehidupan.”",
+
+  "“Sebuah perpisahan bukan akhir, tetapi awal dari langkah berikutnya.”",
+
+  "“Kenangan sederhana sering kali menjadi yang paling berharga.”"
+
+];
+
+let quoteIndex = 0;
+
+const quoteText =
+document.getElementById('quoteText');
+
+const mentorSong =
+document.getElementById('mentorSong');
+
+mentorSong.addEventListener('play', () => {
+
+  clearInterval(quoteInterval);
+
+  quoteInterval = setInterval(() => {
+
+    quoteIndex++;
+
+    if(quoteIndex >= quotes.length){
+
+      quoteIndex = 0;
+
+    }
+
+    quoteText.style.opacity = 0;
+
+    setTimeout(() => {
+
+      quoteText.innerText =
+      quotes[quoteIndex];
+
+      quoteText.style.opacity = 1;
+
+    },300);
+
+  },4000);
+
+});
 
 mentorSong.addEventListener('ended', () => {
+
+  clearInterval(quoteInterval);
+
+  document.getElementById('musicQuotes').style.display =
+  'none';
 
   document.getElementById('finalCard').style.display =
   'block';
