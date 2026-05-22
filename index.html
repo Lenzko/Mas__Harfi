@@ -183,6 +183,25 @@
       pointer-events:none;
     }
 
+    audio{
+      width:100%;
+      margin-top:20px;
+      border-radius:20px;
+    }
+
+    .final-message{
+      margin-top:35px;
+      display:none;
+      animation:fadeIn 1.5s ease;
+    }
+
+    .final-inner{
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:25px;
+      padding:30px;
+    }
+
     @keyframes fall{
       to{
         transform:translateY(700px) rotate(360deg);
@@ -287,10 +306,10 @@
 
   <div class="card">
 
-    <h1>Terima Kasih Mas Harfi</h1>
+    <h1>Thank You Mentor</h1>
 
     <p style="text-align:center;">
-      Sebuah apresiasi untuk Mas Harfi
+      Sebuah apresiasi kecil untuk mentor
       yang telah membimbing saya selama masa magang.
     </p>
 
@@ -312,7 +331,7 @@
     <p>
       Tidak terasa masa magang telah selesai.
       Terima kasih atas bimbingan, kesabaran,
-      serta pengalaman berharga yang telah Mas Harfi diberikan
+      serta pengalaman berharga yang telah diberikan
       selama saya belajar di lingkungan kerja ini.
     </p>
 
@@ -367,9 +386,69 @@
       Mulai Game
     </button>
 
-    <button onclick="scrollToTopPage()">
-      Kembali ke Atas
+    <button onclick="scrollToMusicPage()">
+      Lanjut 🎵
     </button>
+
+  </div>
+
+</section>
+
+<!-- HALAMAN MUSIK -->
+<section class="page" id="musicPage">
+
+  <div class="card">
+
+    <h2>Special Song 🎵</h2>
+
+    <p style="text-align:center;">
+      Sebuah lagu kecil untuk mengiringi
+      ucapan terima kasih ini ✨
+    </p>
+
+    <!-- GANTI LINK MUSIK DISINI -->
+    <audio id="mentorSong" controls>
+
+      <!-- FILE LOCAL -->
+      <source src="musik.mp3" type="audio/mpeg">
+
+      <!-- CONTOH LINK GITHUB -->
+      <!--
+      <source src="https://raw.githubusercontent.com/USERNAME/REPO/main/musik.mp3" type="audio/mpeg">
+      -->
+
+      Browser kamu tidak mendukung audio.
+
+    </audio>
+
+    <!-- FINAL MESSAGE -->
+    <div class="final-message" id="finalCard">
+
+      <div class="final-inner">
+
+        <h2>
+          Final Message ✨
+        </h2>
+
+        <p>
+          Terima kasih untuk semua pengalaman,
+          ilmu, dan kenangan selama masa magang.
+        </p>
+
+        <p>
+          Semoga segala kebaikan yang telah diberikan
+          mendapatkan balasan terbaik,
+          dan semoga sukses selalu menyertai.
+        </p>
+
+        <p class="highlight">
+          “Beberapa pertemuan mungkin singkat,
+          tetapi kenangannya bisa bertahan lama.”
+        </p>
+
+      </div>
+
+    </div>
 
   </div>
 
@@ -397,10 +476,9 @@ function scrollToGame(){
 
 }
 
-function scrollToTopPage(){
+function scrollToMusicPage(){
 
-  window.scrollTo({
-    top:0,
+  document.getElementById('musicPage').scrollIntoView({
     behavior:'smooth'
   });
 
@@ -484,7 +562,7 @@ function showFinishAnimation(){
 
       <div class="big-icon">🏆</div>
 
-      <h1>Thank You, Mas Harfi</h1>
+      <h1>Thank You, Mentor</h1>
 
       <p>
         Terima kasih atas bimbingan,
@@ -519,6 +597,19 @@ function showFinishAnimation(){
   }
 
 }
+
+const mentorSong = document.getElementById('mentorSong');
+
+mentorSong.addEventListener('ended', () => {
+
+  document.getElementById('finalCard').style.display =
+  'block';
+
+  document.getElementById('finalCard').scrollIntoView({
+    behavior:'smooth'
+  });
+
+});
 
 </script>
 
